@@ -1,48 +1,56 @@
-## Serververse™ Network Transit
+# Serververse™ Network Transit
 
-A minimal, production-oriented **IP Transit System** built for developers, homelabs, and infrastructure engineers.
+**Serververse™ Network Transit** is a production-grade IP transit deployment system designed for **developers, homelab operators, and infrastructure engineers**.
 
----
-
-### Features
-
-* One-command deployment
-* WireGuard-based secure tunneling
-* Public IP routing support
-* Lightweight & dependency-minimal
-* Works on most Linux distributions
-* Designed for automation pipelines
+It enables secure, high-performance routing of public IPs over encrypted tunnels, with a focus on **automation, reliability, and minimal operational overhead**.
 
 ---
 
-### Quick Start
+## Core Capabilities
 
-Curl:
+* **One-command provisioning** for rapid deployment
+* **WireGuard-based encrypted transport**
+* **Public IP routing over private infrastructure**
+* **Lightweight, dependency-minimal execution**
+* **Broad Linux compatibility (VPS, bare metal, containers)**
+* **Automation-ready for CI/CD and infra pipelines**
+
+---
+
+## Quick Start
+
+Deploy instantly using:
+
+**Curl**
+
 ```bash
 bash <(curl -fsSL https://transit.serververs.com/wireguard.sh)
 ```
-or
-Wget:
+
+**Wget**
+
 ```bash
 bash <(wget -qO- https://transit.serververs.com/wireguard.sh)
 ```
 
 ---
 
-### Usage
+## Configuration
+
+Run with explicit parameters for production environments:
 
 ```bash
 bash <(curl -fsSL https://transit.serververs.com/wireguard.sh) \
-  --server-pubkey <KEY> \
-  --server-ip     <IP> \
-  --client-ip     <CIDR> \
-  --port          <PORT> \
-  --extra-ip      <PUBLIC_IP>
+  --server-pubkey <SERVER_PUBLIC_KEY> \
+  --server-ip     <SERVER_ENDPOINT_IP> \
+  --client-ip     <CLIENT_TUNNEL_CIDR> \
+  --port          <WIREGUARD_PORT> \
+  --extra-ip      <ALLOCATED_PUBLIC_IP>
 ```
 
 ---
 
-### Example
+## Example Deployment
 
 ```bash
 bash <(curl -fsSL https://transit.serververs.com/wireguard.sh) \
@@ -55,45 +63,65 @@ bash <(curl -fsSL https://transit.serververs.com/wireguard.sh) \
 
 ---
 
-### 🧠 Use Cases
+## Use Cases
 
-* Homelab public exposure via routed IP
-* Game server tunneling (Minecraft, etc.)
-* Failover networking setups
-* Custom cloud infrastructure routing
-* ISP bypass / advanced routing labs
-* Static IP Alternative for NAT Users
-
----
-
-### ⚠️ Notes
-
-* Always ensure **out-of-band access (IPMI/VNC)** before running
-* Misconfiguration may break SSH connectivity
-* Designed for users familiar with Linux networking
-* Currently only for Wireguard, GRE Support will be added soon.
+* Exposing **homelab services** with routable public IPs
+* Secure tunneling for **game servers (e.g., Minecraft)**
+* **Failover and redundancy routing** across regions
+* Custom **cloud and hybrid infrastructure networking**
+* NAT bypass with **dedicated static IP assignment**
+* Advanced routing experiments and lab environments
 
 ---
 
-### 🔐 Terms
+## Operational Notes
 
-By using this script, you agree to Serververse™ Terms of Service and Privacy Policy.
-
----
-
-### 🌐 Ecosystem
-
-* Network Transit → [serververs.com/nt](https://serververs.com/nt)
-* Core Platform → [serververs.com/edge](https://serververs.com/edge)
+* Ensure **out-of-band access (IPMI, VNC, or console)** before deployment
+* Incorrect routing rules may temporarily disrupt SSH access
+* Intended for users with **working knowledge of Linux networking and routing**
+* Current release supports **WireGuard only** (GRE support planned)
 
 ---
 
-### 🤝 Contributing
+## Terms & Compliance
 
-We welcome contributors from:
+By using Serververse™ Network Transit, you agree to the applicable **Terms of Service** and **Privacy Policy**.
 
-* Self-hosting community
-* Homelab builders
-* Network engineers
+---
 
-Open a PR or issue to get started.
+## Ecosystem
+
+* Network Transit → [https://serververs.com/nt](https://serververs.com/nt)
+* Edge & Infrastructure → [https://serververs.com/edge](https://serververs.com/edge)
+
+---
+
+## Contributing
+
+We actively welcome contributions from:
+
+* Infrastructure and network engineers
+* Self-hosting and homelab communities
+* Open-source contributors
+
+To get started:
+
+* Open an issue for discussion
+* Submit a pull request with clear documentation
+
+---
+
+## Version
+
+**v0.1.0 : Initial Public Release**
+
+This version focuses on:
+* Core tunnel provisioning
+* Stable IP routing workflows
+* Minimal, production-usable foundation
+
+Future releases will introduce:
+* Multi-IP orchestration
+* GRE tunneling support
+* CLI tooling and automation layers
+* Observability and diagnostics
