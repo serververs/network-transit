@@ -35,6 +35,7 @@ SERVER_IP=""
 CLIENT_IP=""
 WG_PORT=""
 EXTRA_IP=""
+CUSTOM_MODE=false
 REMOVE_MODE=false
 
 usage() {
@@ -51,6 +52,7 @@ usage() {
     echo "    --remove        Uninstall configuration"
     echo "    --version       Show version"
     echo ""
+    echo "    --custom        Use custom WireGuard config"
     exit 1
 }
 
@@ -65,6 +67,7 @@ while [[ $# -gt 0 ]]; do
         --remove)        REMOVE_MODE=true; shift ;;
         --version)       echo "Serververse Transit ${VERSION}"; exit 0 ;;
         -h|--help)       usage ;;
+        --custom) CUSTOM_MODE=true; shift ;;
         *) die "Unknown argument: $1" ;;
     esac
 done
@@ -72,6 +75,33 @@ done
 [[ "$EUID" -ne 0 ]] && die "Run as root (sudo required)."
 
 print_banner
+
+if $CUSTOM_MODE; then
+    info "Custom configuration mode enabled."
+
+    echo "Paste your WireGuard config below. Press Ctrl+D when done:"
+    CUSTOM_CONFIG=$(cat)
+
+    WG_DIR="/etc/wireguard"
+    CONFIG_FILE="${WG_DIR}/wg0.conf"
+
+    mkdir -p "$WG_DIR"
+    chmod 700 "$WG_DIR"
+
+    echo "$CUSTOM_CONFIG" > "$CONFIG_FILE"
+    chmod 600 "$CONFIG_FILE"
+
+    success "Custom configuration saved to ${CONFIG_FILE}"
+
+    read -rp "Start tunnel now? [y/N]: " START_NOW
+    if [[ "${START_NOW,,}" == "y" ]]; then
+        wg-quick up wg0
+        systemctl enable wg-quick@wg0
+        success "Tunnel started and enabled."
+    fi
+
+    exit 0
+fi
 
 WG_DIR="/etc/wireguard"
 CONFIG_FILE="${WG_DIR}/wg0.conf"
@@ -81,12 +111,12 @@ if $REMOVE_MODE; then
     warn "Uninstall mode triggered..."
     wg-quick down wg0 2>/dev/null || true
     rm -f "$CONFIG_FILE"
-    success "Configuration removed."
+    success "WireGuard stopped (if active) and config removed."
     exit 0
 fi
 
 # ---------------- INTERACTIVE FALLBACK ----------------
-echo -e "${BOLD}Configuration Input${NC}"
+echo -e "  ${BOLD}Configuration Input${NC}"
 
 [[ -z "$SERVER_PUBKEY" ]] && read -rp "Server Public Key: " SERVER_PUBKEY
 [[ -z "$SERVER_IP"     ]] && read -rp "Server IP: " SERVER_IP
@@ -128,6 +158,12 @@ CLIENT_PUBLIC_KEY=$(echo "$CLIENT_PRIVATE_KEY" | wg pubkey)
 
 # ---------------- CONFIG ----------------
 info "Writing configuration..."
+
+if [[ -f "$CONFIG_FILE" ]]; then
+    warn "Existing configuration detected at ${CONFIG_FILE}"
+    read -rp "Overwrite? [y/N]: " CONFIRM
+    [[ "${CONFIRM,,}" != "y" ]] && die "Aborted by user."
+fi
 
 cat > "$CONFIG_FILE" <<EOF
 [Interface]
