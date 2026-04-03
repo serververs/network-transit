@@ -189,6 +189,14 @@ echo -e "${BOLD}Client Public Key:${NC}"
 echo -e "${YELLOW}${CLIENT_PUBLIC_KEY}${NC}"
 echo ""
 
+echo -e "${CYAN}Next Steps:${NC}"
+echo -e "  1. Share the above public key with the ${BOLD}Serververse™ Support Team${NC}"
+echo -e "  2. Our team will configure your tunnel on the Serververse Network Mesh"
+echo -e "  3. Once confirmed, you can start the tunnel using:${NC}"
+echo ""
+echo -e "     ${DIM}wg-quick up wg0 && systemctl enable wg-quick@wg0${NC}"
+echo ""
+
 # ---------------- OPTIONAL START ----------------
 read -rp "Start tunnel now? [y/N]: " START_NOW
 
