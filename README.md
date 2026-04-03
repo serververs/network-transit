@@ -152,6 +152,12 @@ We welcome contributions from:
 * Open an issue for discussion
 * Submit a pull request with clear documentation
 
+## License
+
+This project is proprietary software owned by Serververse™.
+
+Unauthorized use, modification, or distribution is strictly prohibited.
+
 ---
 
 ## Version
