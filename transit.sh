@@ -72,7 +72,7 @@ print_banner
 
 echo -e "  ${BOLD}Welcome to Serververse™ Network Transit${NC}"
 echo ""
-echo -e "  This installer will configure a WireGuard Tunnel to the Serververse™"
+echo -e "  This installer will configure a Tunnel to the Serververse™"
 echo -e "  Transit Network on this Machine."
 echo ""
 echo -e "  ${DIM}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
