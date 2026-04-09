@@ -173,7 +173,8 @@ PersistentKeepalive = 25
 EOF
 
 info "Booting ServerVerse Network Transit!"
-systemctl enable --now wg-quick@wg0  2>&1 | log
+wg-quick up wg0 2>&1 | log
+systemctl enable wg-quick@wg0  2>&1 | log
 
 chmod 600 "$CONFIG_FILE"
 success "Config written."
