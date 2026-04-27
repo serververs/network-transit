@@ -32,13 +32,13 @@ Deploy instantly using:
 ### Curl
 
 ```bash
-bash <(curl -fsSL https://transit.serververs.com/transit.sh)
+bash <(curl -fsSL https://transit.serververs.com/v0.1.1/transit.sh)
 ```
 
 ### Wget
 
 ```bash
-bash <(wget -qO- https://transit.serververs.com/transit.sh)
+bash <(wget -qO- https://transit.serververs.com/v0.1.1/transit.sh)
 ```
 
 ---
@@ -48,7 +48,7 @@ bash <(wget -qO- https://transit.serververs.com/transit.sh)
 Run with explicit parameters for production environments:
 
 ```bash
-bash <(curl -fsSL https://transit.serververs.com/transit.sh) \
+bash <(curl -fsSL https://transit.serververs.com/v0.1.1/transit.sh) \
   --server-pubkey <SERVER_PUBLIC_KEY> \
   --server-ip     <SERVER_ENDPOINT_IP> \
   --client-ip     <CLIENT_TUNNEL_CIDR> \
@@ -61,7 +61,7 @@ bash <(curl -fsSL https://transit.serververs.com/transit.sh) \
 ## Example Deployment
 
 ```bash
-bash <(curl -fsSL https://transit.serververs.com/transit.sh) \
+bash <(curl -fsSL https://transit.serververs.com/v0.1.1/transit.sh) \
   --server-pubkey W+EwaHbJdR5juu/V4269yRRj7Sfxg2mToTqhDWKr7FA= \
   --server-ip     1.1.1.1 \
   --client-ip     10.1.2.2/30 \
@@ -181,6 +181,13 @@ Unauthorized use, modification, or distribution is strictly prohibited.
 
 ---
 
+## ⚠️ Stability Notice
+
+This project is currently in **beta**.  
+Breaking changes may occur between minor versions.
+
+---
+
 ## Roadmap
 
 * Multi-IP & Subnet Level orchestration
@@ -196,3 +203,4 @@ Unauthorized use, modification, or distribution is strictly prohibited.
 This isn’t just a script.
 
 > It’s the foundation for a **programmable network edge layer**.
+
