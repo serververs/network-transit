@@ -49,10 +49,10 @@ Run with explicit parameters for production environments:
 
 ```bash
 bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
-  --UPSTREAM_KEY    <SERVER_PUBLIC_KEY> \
+  --upstream-key    <SERVER_PUBLIC_KEY> \
   --upstream-ip     <SERVER_ENDPOINT_IP> \
-  --NODE_ADDR       <CLIENT_TUNNEL_CIDR> \
-  --UPSTREAM_PO     <PORT> \
+  --node-addr       <CLIENT_TUNNEL_CIDR> \
+  --upstream-port   <PORT> \
   --node-key        <CLIENT_KEY> \
   --routed-ip       <ALLOCATED_PUBLIC_IP>
 ```
@@ -63,10 +63,10 @@ bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
 
 ```bash
 bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
-  --UPSTREAM_KEY    W+EwaHbJdR5juu/V4269yRRj7Sfxg2mToTqhDWKr7FA= \
+  --upstream-key    W+EwaHbJdR5juu/V4269yRRj7Sfxg2mToTqhDWKr7FA= \
   --upstream-ip     1.1.1.1 \
-  --NODE_ADDR       10.1.2.2/30 \
-  --UPSTREAM_PO     51822 \
+  --node-addr       10.1.2.2/30 \
+  --upstream-port   51822 \
   --node-key        WSMKDlgmsd@KkfmjGWQ4115ma/agkaaa1 \
   --routed-ip       1.2.3.4
 ```
@@ -90,16 +90,6 @@ bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
 * Incorrect routing may temporarily disrupt SSH access
 * Intended for users familiar with **Linux networking concepts**
 * Underlying transport mechanisms may evolve across versions
-
----
-
-## Uninstall / Cleanup
-
-To remove configuration:
-
-```bash
-bash <(curl -fsSL https://transit.serververs.com/latest/uninstall.sh) --remove
-```
 
 ---
 
@@ -165,6 +155,7 @@ Unauthorized use, modification, or distribution is strictly prohibited.
 
 * Removed **custom mode**
 * Improved **variables in transit script**
+* Removed **uninstall support**
 
 ---
 ## ⚠️ Stability Notice
