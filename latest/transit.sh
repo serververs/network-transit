@@ -38,7 +38,7 @@ NODE_ADDR=""
 UPSTREAM_PORT=""
 EXTRA_IP=""
 NODE_KEY=""
-REMOVE_MOD="false"
+REMOVE_MODE="false"
 usage() {
     echo ""
     echo -e "  ${BOLD}Usage:${NC}"
