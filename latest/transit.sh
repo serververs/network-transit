@@ -178,7 +178,6 @@ PostUp   = ip rule add from ${EXTRA_IP}/32 table 200 priority 100 || true
 PostDown = ip addr del ${EXTRA_IP}/32 dev lo
 PostDown = ip route del ${UPSTREAM_IP}/32 \$(ip route show default | awk 'NR==1{print "via", \$3, "dev", \$5}')
 PostDown = ip route del default dev wg0 table 200
-PostDown = ip rule del from ${EXTRA_IP}/32 table 200
 
 [Peer]
 PublicKey           = ${UPSTREAM_KEY}
