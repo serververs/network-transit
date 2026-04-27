@@ -32,13 +32,13 @@ Deploy instantly using:
 ### Curl
 
 ```bash
-bash <(curl -fsSL https://transit.serververs.com/v0.1.1/transit.sh)
+bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh)
 ```
 
 ### Wget
 
 ```bash
-bash <(wget -qO- https://transit.serververs.com/v0.1.1/transit.sh)
+bash <(wget -qO- https://transit.serververs.com/latest/transit.sh)
 ```
 
 ---
@@ -48,12 +48,13 @@ bash <(wget -qO- https://transit.serververs.com/v0.1.1/transit.sh)
 Run with explicit parameters for production environments:
 
 ```bash
-bash <(curl -fsSL https://transit.serververs.com/v0.1.1/transit.sh) \
-  --server-pubkey <SERVER_PUBLIC_KEY> \
-  --server-ip     <SERVER_ENDPOINT_IP> \
-  --client-ip     <CLIENT_TUNNEL_CIDR> \
-  --port          <PORT> \
-  --extra-ip      <ALLOCATED_PUBLIC_IP>
+bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
+  --UPSTREAM_KEY    <SERVER_PUBLIC_KEY> \
+  --upstream-ip     <SERVER_ENDPOINT_IP> \
+  --NODE_ADDR       <CLIENT_TUNNEL_CIDR> \
+  --UPSTREAM_PO     <PORT> \
+  --node-key        <CLIENT_KEY> \
+  --routed-ip       <ALLOCATED_PUBLIC_IP>
 ```
 
 ---
@@ -61,35 +62,14 @@ bash <(curl -fsSL https://transit.serververs.com/v0.1.1/transit.sh) \
 ## Example Deployment
 
 ```bash
-bash <(curl -fsSL https://transit.serververs.com/v0.1.1/transit.sh) \
-  --server-pubkey W+EwaHbJdR5juu/V4269yRRj7Sfxg2mToTqhDWKr7FA= \
-  --server-ip     1.1.1.1 \
-  --client-ip     10.1.2.2/30 \
-  --port          51822 \
-  --extra-ip      1.2.3.4
+bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
+  --UPSTREAM_KEY    W+EwaHbJdR5juu/V4269yRRj7Sfxg2mToTqhDWKr7FA= \
+  --upstream-ip     1.1.1.1 \
+  --NODE_ADDR       10.1.2.2/30 \
+  --UPSTREAM_PO     51822 \
+  --node-key        WSMKDlgmsd@KkfmjGWQ4115ma/agkaaa1 \
+  --routed-ip       1.2.3.4
 ```
-
----
-
-## Installation Modes
-
-### 1. Interactive Mode
-
-If no parameters are provided, the installer will prompt for required values step-by-step.
-
-### 2. CLI Mode
-
-All parameters can be passed directly for automation and scripting.
-
-### 3. Custom Mode
-
-Use your own configuration:
-
-```bash
-bash <(curl -fsSL https://transit.serververs.com/transit.sh) --custom
-```
-
-This allows full manual control over the generated configuration.
 
 ---
 
@@ -118,7 +98,7 @@ This allows full manual control over the generated configuration.
 To remove configuration:
 
 ```bash
-bash <(curl -fsSL https://transit.serververs.com/transit.sh) --remove
+bash <(curl -fsSL https://transit.serververs.com/latest/uninstall.sh) --remove
 ```
 
 ---
@@ -181,6 +161,12 @@ Unauthorized use, modification, or distribution is strictly prohibited.
 
 ---
 
+### v0.1.2 : Feature Removal (latest)
+
+* Removed **custom mode**
+* Improved **variables in transit script**
+
+---
 ## ⚠️ Stability Notice
 
 This project is currently in **beta**.  

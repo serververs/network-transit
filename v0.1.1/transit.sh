@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERSION="v0.2.0"
+VERSION="v0.1.1"
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
