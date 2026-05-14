@@ -168,16 +168,20 @@ cat > "$CONFIG_FILE" <<EOF
 PrivateKey = ${CLIENT_NODE_KEY}
 Address    = ${NODE_ADDR}
 Table      = off
-DNS        = 1.1.1.1,1.0.0.1
 
-PostUp   = ip addr add ${EXTRA_IP}/32 dev lo || true
-PostUp   = ip route add ${UPSTREAM_IP}/32 \$(ip route show default | awk 'NR==1{print "via", \$3, "dev", \$5}') || true
-PostUp   = ip route add default dev wg0 table 200 || true
-PostUp   = ip rule add from ${EXTRA_IP}/32 table 200 priority 100 || true
+PostUp = ip a a ${EXTRA_IP} dev lo
+PostDown = ip a d ${EXTRA_IP} dev lo
 
-PostDown = ip addr del ${EXTRA_IP}/32 dev lo
-PostDown = ip route del ${UPSTREAM_IP}/32 \$(ip route show default | awk 'NR==1{print "via", \$3, "dev", \$5}')
-PostDown = ip rule del from ${EXTRA_IP}/32 table 200 priority 100 || true
+PostUp = ip route add default dev wg0 table 100
+
+PostUp = ip rule add from ${EXTRA_IP} lookup 100
+PostDown = ip rule del from ${EXTRA_IP} lookup 100
+
+PostUp = ip rule add from 172.18.0.0/16 lookup 100
+PostDown = ip rule del from 172.18.0.0/16 lookup 100
+
+PostUp = iptables -t nat -I POSTROUTING 1 -s 172.18.0.0/16 -o wg0 -j SNAT --to-source ${EXTRA_IP}
+PostDown = iptables -t nat -D POSTROUTING -s 172.18.0.0/16 -o wg0 -j SNAT --to-source ${EXTRA_IP}
 
 [Peer]
 PublicKey           = ${UPSTREAM_KEY}
