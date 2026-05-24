@@ -25,54 +25,6 @@ Built for flexibility, it is designed to evolve across multiple transport mechan
 
 ---
 
-## Quick Start
-
-Deploy instantly using:
-
-### Curl
-
-```bash
-bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh)
-```
-
-### Wget
-
-```bash
-bash <(wget -qO- https://transit.serververs.com/latest/transit.sh)
-```
-
----
-
-## Configuration
-
-Run with explicit parameters for production environments:
-
-```bash
-bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
-  --upstream-key    <SERVER_PUBLIC_KEY> \
-  --upstream-ip     <SERVER_ENDPOINT_IP> \
-  --node-addr       <CLIENT_TUNNEL_CIDR> \
-  --upstream-port   <PORT> \
-  --node-key        <CLIENT_KEY> \
-  --routed-ip       <ALLOCATED_PUBLIC_IP>
-```
-
----
-
-## Example Deployment
-
-```bash
-bash <(curl -fsSL https://transit.serververs.com/latest/transit.sh) \
-  --upstream-key    W+EwaHbJdR5juu/V4269yRRj7Sfxg2mToTqhDWKr7FA= \
-  --upstream-ip     1.1.1.1 \
-  --node-addr       10.1.2.2/30 \
-  --upstream-port   51822 \
-  --node-key        WSMKDlgmsd@KkfmjGWQ4115ma/agkaaa1 \
-  --routed-ip       1.2.3.4
-```
-
----
-
 ## Use Cases
 
 * Exposing **homelab services** with public IPs
@@ -151,13 +103,25 @@ Unauthorized use, modification, or distribution is strictly prohibited.
 
 ---
 
-### v0.1.2 : Feature Removal (latest)
+### v0.1.2 : Feature Removal
 
 * Removed **custom mode**
 * Improved **variables in transit script**
 * Removed **uninstall support**
 
 ---
+
+### v0.2 : Fresh Update (latest)
+
+* Removed all the old provisionion
+* Implemented Token based installed instead of the old
+* A dashboard to view your transit ips and get the install key with command
+* Changed wireguard configuration on basis of client use cases
+* Changed deployment strategy and server side networking for easier management and cleaner routing, as per use case of the customer.
+* Fixed a bug where the connections hangs everytime a new keepAlive is sent
+
+---
+
 ## ⚠️ Stability Notice
 
 This project is currently in **beta**.  
@@ -167,11 +131,11 @@ Breaking changes may occur between minor versions.
 
 ## Roadmap
 
-* Multi-IP & Subnet Level orchestration
+* Multi-IP orchestration ✅
 * GRE and additional transport support
 * CLI tool (`svt`)
 * Observability and diagnostics
-* Control Panel Introduction
+* Control Panel Introduction ✅
 
 ---
 
