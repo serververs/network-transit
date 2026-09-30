@@ -111,17 +111,25 @@ Unauthorized use, modification, or distribution is strictly prohibited.
 
 ---
 
-### v0.2 : Fresh Update (latest)
+### v0.2 : Fresh Update
 
 * Removed all the old provisionion
 * Implemented Token based installed instead of the old
 * A dashboard to view your transit ips and get the install key with command
-* Changed wireguard configuration on basis of client use cases
+* Changed wireguard configuration on bassis of client use cases
 * Changed deployment strategy and server side networking for easier management and cleaner routing, as per use case of the customer.
 * Fixed a bug where the connections hangs everytime a new keepAlive is sent
 
 ---
 
+### v0.3 : The New Phase
+* New dashboard interface
+* Google auth can be used to register accounts on labs
+* Implemented email alerts to users
+* Bandwidth statistics implementation on dashboard
+* Added support for Proxmox (Only subnets atleast /28)
+* Audit logging for accounts
+* New cli tool! `sv-transit` to install and view status of transit
 ## ⚠️ Stability Notice
 
 This project is currently in **beta**.  
@@ -133,7 +141,7 @@ Breaking changes may occur between minor versions.
 
 * Multi-IP orchestration ✅
 * GRE and additional transport support
-* CLI tool (`svt`)
+* CLI tool (`sv-transit`) ✅
 * Observability and diagnostics
 * Control Panel Introduction ✅
 
